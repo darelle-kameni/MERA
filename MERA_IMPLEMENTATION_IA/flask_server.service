@@ -1,0 +1,21 @@
+[Unit]
+Description=Flask API Server - Eye Disease Detection
+After=network.target
+
+[Service]
+Type=simple
+User=mera
+WorkingDirectory=/home/mera/mera_detection
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/mera/mera_detection/.venv/bin"
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/home/mera/mera_detection/.venv/bin/python3 /home/mera/mera_detection/flask_server.py
+Restart=always
+RestartSec=5
+StartLimitBurst=0
+StartLimitIntervalSec=0
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=flask_server
+
+[Install]
+WantedBy=multi-user.target
